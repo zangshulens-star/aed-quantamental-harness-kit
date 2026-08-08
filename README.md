@@ -21,7 +21,8 @@ aed_quantamental_harness_kit/
 ├── context-governance/
 │   ├── task-tracking-protocol/     ← Multi-session task continuity (self-installing Upgrade Kit)
 │   ├── index-chaptered-docs/       ← Documentation governance spec + templates for agentic projects
-│   └── handoff-blob/               ← Sub-agent context injection spec (~200-word fixed format)
+│   ├── handoff-blob/               ← Sub-agent context injection spec (~200-word fixed format)
+│   └── memo-harness/               ← Per-round conversation archive protocol (memo/ directory)
 ├── quant-defence/                  ← Quant research defence toolbelt (pip-installable CLI suite)
 └── eco-harness/                    ← 20+ open data sources, one-line calls
 ```
@@ -51,6 +52,14 @@ A three-layer structure (master index / architecture / chapter docs) built again
 A fixed-format text block of ≤200 words (project identity + current task state + recent milestone + key files), prepended verbatim to any sub-agent prompt. Constant transfer cost, machine-checkable format, derived from the task state file (never hand-edited).
 
 - `SPEC.md` — format, generation rules, discipline (no sensitive info)
+
+### context-governance / memo-harness
+
+**Solves: process knowledge evaporating — task state survives, but the "why" doesn't.**
+
+TTP's state file answers "what now"; it says nothing about "how did we get here" — rejected options, past constraints, the reasoning behind decisions. Memo Harness is the archive layer: at the end of every conversation round, the agent must ask "Run memo harness?"; on yes, the round is written to `memo/memo_<summary_title>_<yyyymmdd>.md` — append-only, never overwritten, never written silently.
+
+- `SPEC.md` — turn-end ritual, naming convention, memo template, division of labor with TTP, injectable CLAUDE.md block
 
 ### quant-defence
 
@@ -159,6 +168,7 @@ The split is deliberate. A cost-disciplined workhorse model writes the code; a s
 - **task-tracking-protocol（任务追踪协议）**：解决多会话/多分支/多代理协作中的状态丢失。安装：把 `UPGRADE_KIT.md` 里的自执行 prompt 发给你的 agent，它自动完成安装与验证。
 - **index-chaptered-docs（分章文档系统）**：主索引 + 架构 + 章节三层结构，专治文档腐化和 agent 读错文件。模板在 `templates/` 直接用。
 - **handoff-blob（交接块）**：≤200 词固定格式，spawn 子代理时前置到 prompt，解决子代理零上下文启动。
+- **memo-harness（逐轮存档协议）**：每轮对话结束必须问"要不要存档"，yes 则写入 `memo/memo_<概要标题>_<yyyymmdd>.md`，只追加不覆写。TTP 管"现在在哪"，memo 管"怎么走到这的"。
 - **quant-defence（量化防守工具带）**：`pip install -e ./quant-defence`，之后 `qh-verify` / `qh-null-audit` / `qh-coverage` 命令可用。
 - **eco-harness（开源数据基座）**：20+ 公开数据源一行调用。`cd eco-harness && pip install -r requirements.txt`。FRED / EIA / UN Comtrade 需免费注册 API key（链接见上表），其余源开箱即用。
 - **推荐工具配置**：VS Code + Kimi Code / Claude Code 双扩展。模型搭配：Kimi K3 负责架构与审计，DeepSeek V4 Pro（配在 Claude Code 里）作为主力编码模型——便宜模型写码、异家模型复核，这就是 $720 总 API 花费跑出 33 万行生产代码的核心打法。
