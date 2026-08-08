@@ -1,0 +1,102 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: ClaimsRegistry
+description: Schema for quant_harness claims.yaml registry file
+type: object
+required: [meta, claims]
+properties:
+  meta:
+    type: object
+    required: [project_name]
+    properties:
+      project_name:
+        type: string
+        description: Human-readable project name
+      project_root:
+        type: string
+        description: Path to project root directory (relative to claims.yaml or absolute)
+        default: "."
+      engine_entry:
+        type: string
+        description: Path to engine function in format 'path/to/file.py::function_name'
+      version:
+        type: string
+        description: Current project version
+    additionalProperties: true
+  claims:
+    type: array
+    items:
+      type: object
+      required: [id, chapter, type, text, expected, severity]
+      properties:
+        id:
+          type: string
+          description: Unique claim identifier (e.g. '3A.1')
+        chapter:
+          type: string
+          description: Chapter or section label
+        type:
+          type: string
+          enum:
+            - value_exact
+            - value_range
+            - aggregate
+            - time_mask
+            - cross_count
+            - set_equality
+            - combo_match
+            - counterfactual
+            - rank_position
+            - invariant
+        text:
+          type: string
+          description: Human-readable claim statement
+        expected:
+          description: Expected value — structure depends on claim type
+        severity:
+          type: string
+          enum: [critical, warning, info]
+        source:
+          type: object
+          description: How to resolve the actual value for this claim
+          properties:
+            csv:
+              type: string
+              description: Path to CSV file (relative to project_root)
+            column:
+              type: string
+              description: Column name in the CSV
+            filter:
+              type: string
+              description: pandas query string to filter rows
+            method:
+              type: string
+              enum: [from_csv, recompute_from_engine, custom_python]
+              default: from_csv
+            engine_args:
+              type: object
+              description: Arguments to pass to engine function (if method=recompute_from_engine)
+            script:
+              type: string
+              description: Python script path (if method=custom_python)
+        tolerance:
+          type: object
+          description: Tolerance for value_exact and value_range types
+          properties:
+            relative:
+              type: number
+              description: Relative tolerance (e.g. 0.01 = 1%)
+            absolute:
+              type: number
+              description: Absolute tolerance
+        note:
+          type: string
+          description: Optional note about this claim
+        status:
+          type: string
+          enum: [active, auto_generated, stale, deprecated]
+          default: active
+        needs_review:
+          type: boolean
+          description: If true, this claim was auto-generated and needs human review
+          default: false
+      additionalProperties: true

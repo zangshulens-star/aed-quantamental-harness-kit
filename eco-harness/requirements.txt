@@ -1,0 +1,38 @@
+# Core
+pandas>=2.0
+requests>=2.28
+python-dotenv>=1.0
+
+# US data (FRED + Treasury)
+fredapi>=0.5
+
+# China data
+akshare>=1.16
+
+# Global data (World Bank + DBnomics)
+wbgapi>=1.0
+dbnomics>=1.2
+
+# SDMX (OECD + ECB + Eurostat)
+opensdmx>=0.12
+
+# Japan (Bank of Japan)
+boj-api>=0.1
+
+# UCDP conflict data
+numpy>=1.24
+
+# PBoC swap lines (web scraping)
+beautifulsoup4>=4.12
+
+# v2.0: Yahoo Finance — gold, FX, crude, stocks, MOVE, VIX
+yfinance>=0.2.40
+
+# v2.0: Tavily web search
+tavily-python>=0.3
+
+# v2.0: CBO data (Playwright CDP)
+playwright>=1.40
+
+# v2.0: GSDB .dta support (optional)
+pyreadstat>=1.2

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quant_harness"
+version = "1.0.0"
+description = "Zero-config, pip-installable quantitative research defence toolbelt"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Nicholas Zhang"}]
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+qh-verify       = "quant_harness.cli.verify:main"
+qh-null-audit   = "quant_harness.cli.null_audit:main"
+qh-coverage     = "quant_harness.cli.coverage:main"
+qh-version-check = "quant_harness.cli.version_check:main"
+qh-auto-claims  = "quant_harness.cli.auto_claims:main"
+qh-sensitivity  = "quant_harness.cli.sensitivity:main"
+qh-lookahead    = "quant_harness.cli.lookahead:main"
+qh-regression   = "quant_harness.cli.regression:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+quant_harness = ["templates/*", "schemas/*"]

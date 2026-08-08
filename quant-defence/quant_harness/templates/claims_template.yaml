@@ -1,0 +1,72 @@
+# =============================================================================
+# Quant Harness — Claims Registry Template
+# =============================================================================
+# Register every quantitative claim from your paper here.
+# Each claim is verified by qh-verify against actual data or engine output.
+#
+# Claim types:
+#   value_exact   — Compare latest value against expected, with tolerance
+#   value_range   — Check value falls within [min, max]
+#   aggregate     — Compare sum/mean/max/min/count against expected
+#   time_mask     — Verify condition holds during a time period
+#   cross_count   — Count rows matching a cross-section condition
+#   set_equality  — Compare sets of unique values
+#
+# Resolution methods:
+#   from_csv              — Read from CSV, apply filter, extract column
+#   recompute_from_engine — Run engine function via importlib
+#   custom_python         — Run external script via subprocess
+# =============================================================================
+
+meta:
+  project_name: "My Project"
+  project_root: "."
+  # engine_entry: "backtest/bt_engine.py::build_signals"
+  # version: "1.0.0"
+
+claims:
+  # ── Example: exact value claim ──
+  # - id: "3A.1"
+  #   chapter: "Ch3A"
+  #   type: value_exact
+  #   text: "Full-sample Sharpe ratio is 0.73"
+  #   expected: 0.73
+  #   severity: critical
+  #   source:
+  #     csv: "output/performance.csv"
+  #     column: "sharpe"
+  #     filter: "period == 'full'"
+  #     method: from_csv
+  #   tolerance:
+  #     relative: 0.02
+  #
+  # ── Example: aggregate claim ──
+  # - id: "4B.3"
+  #   chapter: "Ch4B"
+  #   type: aggregate
+  #   text: "Total active days under correlation override: 1,239"
+  #   expected:
+  #     method: sum
+  #     value: 1239
+  #   severity: warning
+  #   source:
+  #     csv: "output/signals.csv"
+  #     column: "corr_override_active"
+  #     method: from_csv
+  #   tolerance:
+  #     absolute: 5
+  #
+  # ── Example: time mask claim ──
+  # - id: "5A.1"
+  #   chapter: "Ch5A"
+  #   type: time_mask
+  #   text: "During COVID (2020-03 to 2020-06), floor was never hit"
+  #   expected:
+  #     start: "2020-03-01"
+  #     end: "2020-06-30"
+  #     condition: "all > 0.25"
+  #   severity: critical
+  #   source:
+  #     csv: "output/multipliers.csv"
+  #     column: "effective_mult"
+  #     method: from_csv
