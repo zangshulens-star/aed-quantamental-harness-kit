@@ -120,6 +120,8 @@ Every component here was extracted from a live production environment, not writt
 
 ## Getting started
 
+**Prerequisite — give your project a memory first.** The harness installs *into* your project's memory files: the task-tracking protocol injects a block into your `CLAUDE.md` and keeps its state in `.claude/current_task.md`. If the project you want to upgrade doesn't have a `CLAUDE.md` yet, create one first — open Claude Code in that project and run `/init`, or ask any coding agent to "write a CLAUDE.md for this project". Without it, the protocols have nothing to attach to. (前置条件：先给项目建好记忆文件。harness 是装进项目的 `CLAUDE.md` 和 `.claude/` 里的——没有的话先在项目里跑 Claude Code 的 `/init`，或让任意 agent 给项目写一个 CLAUDE.md，否则协议无处附着。)
+
 **Zero-code install**: open your AI coding tool in this folder and paste one sentence — `Read FOLLOW_ME_BRO.md and do exactly what it says` — the agent installs and verifies everything for you. (零代码安装：在 AI 编程工具里打开本文件夹，贴一句"读 FOLLOW_ME_BRO.md 照着做"，agent 会装好并验证全部组件。)
 
 **Manual install** (if you prefer):
