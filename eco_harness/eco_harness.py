@@ -30,7 +30,7 @@ Module-level (standalone import):
   gsdb/       GSDB v4 sanctions database loader             [v2.0]
 
 Usage:
-    from bundle.eco_harness import EcoHarness
+    from eco_harness import EcoHarness
     eh = EcoHarness(fred_api_key='...')
     df = eh.us.gdp()
     df = eh.yfinance.gold()

@@ -11,7 +11,7 @@ standardised DataFrame output.
 ## Quick Start
 
 ```python
-from bundle.eco_harness import EcoHarness
+from eco_harness.eco_harness import EcoHarness
 
 eh = EcoHarness(fred_api_key='your_fred_key')
 
@@ -264,17 +264,17 @@ All time-series methods accept optional `start` / `end` string parameters (`'YYY
 These are imported directly from the bundle, not accessed via EcoHarness:
 
 ```python
-from bundle.bis import credit_private, total_credit
-from bundle.wgi import get_all_wgi, get_indicator
-from bundle.ofac import fetch_sdn, get_sanctions_by_country
-from bundle.un_voting import get_ideal_point, get_voting_distance
-from bundle.ipu import get_chambers, get_sovereign_chambers
-from bundle.pbc_swap import get_swap_lines
-from bundle.sipri import fetch_arms_transfers, us_exports, china_exports
-from bundle.imf_dot import bilateral_trade, total_exports, total_imports
-from bundle.cofer import usd_share, currency_shares, cny_share_trend
-from bundle.opensanctions import load_entities, search_by_country, sanctions_summary
-from bundle.gsdb import load, sanctions_by_target, active_sanctions
+from eco_harness.bis import credit_private, total_credit
+from eco_harness.wgi import get_all_wgi, get_indicator
+from eco_harness.ofac import fetch_sdn, get_sanctions_by_country
+from eco_harness.un_voting import get_ideal_point, get_voting_distance
+from eco_harness.ipu import get_chambers, get_sovereign_chambers
+from eco_harness.pbc_swap import get_swap_lines
+from eco_harness.sipri import fetch_arms_transfers, us_exports, china_exports
+from eco_harness.imf_dot import bilateral_trade, total_exports, total_imports
+from eco_harness.cofer import usd_share, currency_shares, cny_share_trend
+from eco_harness.opensanctions import load_entities, search_by_country, sanctions_summary
+from eco_harness.gsdb import load, sanctions_by_target, active_sanctions
 ```
 
 ### bis — BIS Credit Statistics
@@ -495,7 +495,7 @@ EOF
 ### Pattern 1: Quick single-indicator fetch
 
 ```python
-from bundle.eco_harness import EcoHarness
+from eco_harness.eco_harness import EcoHarness
 eh = EcoHarness(fred_api_key='...')
 
 df = eh.us.gdp()
@@ -505,7 +505,7 @@ print(df.tail())
 ### Pattern 2: Cross-source comparison
 
 ```python
-from bundle.eco_harness import EcoHarness
+from eco_harness.eco_harness import EcoHarness
 eh = EcoHarness()
 
 # US vs China GDP growth
@@ -520,8 +520,8 @@ cn_10y = eh.cn.lpr()  # China doesn't have a deep 10Y market — LPR as proxy
 ### Pattern 3: Sovereign risk dashboard data pull
 
 ```python
-from bundle.eco_harness import EcoHarness
-from bundle import wgi, ofac, ucdp, cofer, sipri
+from eco_harness.eco_harness import EcoHarness
+from eco_harness import wgi, ofac, ucdp, cofer, sipri
 
 eh = EcoHarness()
 
@@ -546,7 +546,7 @@ arms = sipri.by_recipient('TUR')
 ### Pattern 4: Daily market monitoring
 
 ```python
-from bundle.eco_harness import EcoHarness
+from eco_harness.eco_harness import EcoHarness
 
 eh = EcoHarness()
 
@@ -565,7 +565,7 @@ yield_10y = eh.us.treasury_10y()
 ### Pattern 5: Use module-level functions directly (no EcoHarness instance needed)
 
 ```python
-from bundle import bis, cofer, imf_dot, sipri
+from eco_harness import bis, cofer, imf_dot, sipri
 
 # BIS credit data
 credit = bis.credit_private(['US', 'CN', 'JP'])

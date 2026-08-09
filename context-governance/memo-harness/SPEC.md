@@ -124,7 +124,7 @@ memo_<对话内容概要标题>_<yyyymmdd>.md
 - FOLLOW_ME_BRO 全文禁用裸 pip，强制 `PYTHON -m pip`
 
 ## 遗留问题
-- eco-harness/skill.md 约 30 处 `from bundle.*` 旧写法待处置（倾向原样保留+README 加导入说明）
+- demo #2（多 Python 加固验证）待 Nicholas 反馈，通过则转 public
 
 ## 下一步
 - commit 加固改动 → 转 public → Phase 5 clone 验证汇报

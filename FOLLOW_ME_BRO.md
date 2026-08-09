@@ -37,8 +37,8 @@ You are an installation agent for a user who **cannot code**. Your job: install 
 
 ## Phase 2 — eco-harness (open data layer)
 
-1. `python -m pip install -r ./eco-harness/requirements.txt` (use your `PYTHON` from Phase 0)
-2. Verify: run `python -c "import sys, importlib; sys.path.insert(0,'.'); importlib.import_module('eco-harness'); print('EcoHarness OK')"` — expect `EcoHarness OK`. (The folder name `eco-harness` contains a hyphen, so the package must be imported via `importlib` rather than a plain `import` statement.)
+1. `python -m pip install -r ./eco_harness/requirements.txt` (use your `PYTHON` from Phase 0)
+2. Verify: run `python -c "from eco_harness import EcoHarness; print('EcoHarness OK')"` from the kit root — expect `EcoHarness OK`.
    - If this fails with `ModuleNotFoundError` for a package pip just installed: you are hitting the multi-Python trap — re-run step 1 with the exact same `PYTHON` you use in this verify command, then retry.
 3. Optional keys (do NOT block on these): tell the user three sources need a free API key — FRED (fred.stlouisfed.org), EIA (eia.gov/opendata), UN Comtrade (comtradeplus.un.org) — and that everything else works without keys.
 4. Report: "eco-harness installed. 20+ open data sources are one-line calls away." (中文：数据基座装好了。)

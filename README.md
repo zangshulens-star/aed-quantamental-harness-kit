@@ -24,7 +24,7 @@ aed_quantamental_harness_kit/
 │   ├── handoff-blob/               ← Sub-agent context injection spec (~200-word fixed format)
 │   └── memo-harness/               ← Per-round conversation archive protocol (memo/ directory)
 ├── quant-defence/                  ← Quant research defence toolbelt (pip-installable CLI suite)
-└── eco-harness/                    ← 20+ open data sources, one-line calls
+└── eco_harness/                    ← 20+ open data sources, one-line calls
 ```
 
 ### context-governance / task-tracking-protocol
@@ -100,7 +100,7 @@ eh.global_.gdp('CHN')  # World Bank / IMF / OECD via SDMX
 
 Optional: `tavily-python` (web search) is supported but not bundled — `pip install tavily-python` and register at https://tavily.com if needed.
 
-Install: `cd eco-harness && pip install -r requirements.txt` (or run `python install.py` for guided setup).
+Install: `cd eco_harness && pip install -r requirements.txt` (or run `python install.py` for guided setup).
 
 ---
 
@@ -145,7 +145,7 @@ step by step. Do not skip verification.
 
 **quant-defence**: `pip install -e ./quant-defence` → `qh-*` commands available.
 
-**eco-harness**: `pip install -r requirements.txt` in `eco-harness/` → `from eco_harness import EcoHarness`.
+**eco-harness**: `pip install -r requirements.txt` in `eco_harness/` → `from eco_harness import EcoHarness`.
 
 ---
 
@@ -170,7 +170,7 @@ The split is deliberate. A cost-disciplined workhorse model writes the code; a s
 - **handoff-blob（交接块）**：≤200 词固定格式，spawn 子代理时前置到 prompt，解决子代理零上下文启动。
 - **memo-harness（逐轮存档协议）**：每轮对话结束必须问"要不要存档"，yes 则写入 `memo/memo_<概要标题>_<yyyymmdd>.md`，只追加不覆写。TTP 管"现在在哪"，memo 管"怎么走到这的"。
 - **quant-defence（量化防守工具带）**：`pip install -e ./quant-defence`，之后 `qh-verify` / `qh-null-audit` / `qh-coverage` 命令可用。
-- **eco-harness（开源数据基座）**：20+ 公开数据源一行调用。`cd eco-harness && pip install -r requirements.txt`。FRED / EIA / UN Comtrade 需免费注册 API key（链接见上表），其余源开箱即用。
+- **eco-harness（开源数据基座）**：20+ 公开数据源一行调用。`cd eco_harness && pip install -r requirements.txt`。FRED / EIA / UN Comtrade 需免费注册 API key（链接见上表），其余源开箱即用。
 - **推荐工具配置**：VS Code + Kimi Code / Claude Code 双扩展。模型搭配：Kimi K3 负责架构与审计，DeepSeek V4 Pro（配在 Claude Code 里）作为主力编码模型——便宜模型写码、异家模型复核，这就是 $720 总 API 花费跑出 33 万行生产代码的核心打法。
 
 ---

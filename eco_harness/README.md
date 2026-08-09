@@ -14,7 +14,7 @@ This installs all Python dependencies + Playwright Chromium. Use `--check` to se
 ## Quick Start
 
 ```python
-from bundle.eco_harness import EcoHarness
+from eco_harness import EcoHarness
 
 eh = EcoHarness(fred_api_key='your_fred_key')
 
